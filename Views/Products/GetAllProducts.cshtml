@@ -1,0 +1,44 @@
+﻿@model List<MVCEcommerce.Models.Entities.ProductDetail>
+
+<html>
+<head>
+    <title>Product List</title>
+</head>
+<body>
+    <table border="1" cellspacing="10" cellpadding="8" style="border-collapse: separate;">
+        <thead>
+            <tr>
+              
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+
+            <td style="vertical-align: bottom; height: 200px;">
+                
+                @if (product.ImageData != null && product.ImageData.Length > 0)
+                {
+                    var base64 = Convert.ToBase64String(product.ImageData);
+                    var imgSrc = $"data:image/jpeg;base64,{base64}";
+                    <img src="@imgSrc" alt="Product image" width="150" />
+                }
+                else
+                {
+                    <em>No image available</em>
+                }
+
+                <div>
+                    <strong>@product.ProductName</strong><br />
+                    Price: Rs.@product.PriceOfProduct<br />
+                    Available: @product.availableProduct
+                </div>
+            </td>
+
+                    
+              
+            }
+        </tbody>
+    </table>
+</body>
+</html>

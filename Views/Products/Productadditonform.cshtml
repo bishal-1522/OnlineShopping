@@ -1,0 +1,46 @@
+﻿@model MVCEcommerce.Models.ProductViewModel
+
+<!doctype html>
+<html>
+    <head><title>
+
+    </title>
+    </head>
+    <body>
+    <form asp-action="AddProduct" asp-controller="Products" method="post" enctype="multipart/form-data">
+        <h3>Student Information</h3>
+        @Html.HiddenFor(m => m.Product.ProductId)
+
+        <div>
+            <label>Product Name:</label>
+            @Html.TextBoxFor(m => m.Product.ProductName)
+        </div>
+        <br />
+        <div>
+            <label>Available product:</label>
+            @Html.TextBoxFor(m => m.Product.availableProduct)
+        </div>
+        <br />
+        <div>
+            <label>Price of product:</label>
+            @Html.TextBoxFor(m => m.Product.PriceOfProduct)
+        </div>
+        <div>
+            <label>Image:</label>
+            <input type="file" name="Product.ImageFile" />
+        </div>
+        <div>
+            <select id="CategorySelect" name="Product.CategoryId">
+                <option value="">Select</option>
+                @foreach (var cat in Model.Categories)
+                {
+                    <option value="@cat.CategoryId">@cat.CategoryName</option>
+                }
+            </select>
+
+        </div>
+        <br />
+        <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>

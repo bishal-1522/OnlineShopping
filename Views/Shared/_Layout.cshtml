@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MVC</title>
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #0066cc;
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-link {
+            margin: 0 1rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+            .nav-link:hover {
+                text-decoration: underline;
+                color: #ffdd57;
+            }
+
+        .navbar-nav {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+
+        footer {
+            background-color: #0066cc;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+
+        .bi {
+            font-size: 1.2rem;
+            margin-left: 0.5rem;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MVC</a>
+            <ul class="navbar-nav">
+                <li><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a class="nav-link" asp-area="" asp-controller="Category" asp-action="Index">Category</a></li>
+                <li><a class="nav-link" asp-area="" asp-controller="Products" asp-action="GetAllProducts">GetAll</a></li>
+                <li><a class="nav-link" asp-area="" asp-controller="Products" asp-action="AddProduct">Add Product</a></li>
+            </ul>
+            <ul class="navbar-nav">
+                <li><a class="nav-link" asp-controller="AuthService" asp-action="Login">Login</a></li>
+                <li><a class="nav-link" asp-controller="AuthService" asp-action="Register">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer>
+        click here for full screen <i class="bi bi-arrows-fullscreen"></i>
+    </footer>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

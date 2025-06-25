@@ -1,0 +1,60 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using MVCEcommerce.Models;
+using MVCEcommerce.Models.DTO;
+using MVCEcommerce.Models.Entities;
+using MVCEcommerce.Repository;
+
+namespace MVCEcommerce.Controllers
+{
+    public class ProductsController : Controller
+    {
+        private readonly IProductRepository productRepository;
+        public ProductsController(IProductRepository productRepository)
+        {
+            this.productRepository = productRepository;
+        }
+        public IActionResult GetAllProducts()
+        {
+             var all=productRepository.GetAllProducts();
+            return View("~/Views/Products/GetAllProducts.cshtml", all);
+        }
+        [HttpGet]
+        public IActionResult AddProduct()
+        {
+            var viewmodel = new ProductViewModel()
+            {
+                Product = new ProductDetailDto(),
+                Categories=productRepository.GetAllCategories().ToList()
+            };
+            return View("Productadditonform",viewmodel);
+        }
+        [HttpPost]
+        public IActionResult AddProduct(ProductViewModel productViewModel)
+        {
+            if (productViewModel == null)
+            {
+                
+            }
+
+            var dto = new ProductDetailDto
+            {
+                ProductName = productViewModel.Product.ProductName,
+                PriceOfProduct = productViewModel.Product.PriceOfProduct,
+                availableProduct = productViewModel.Product.availableProduct,
+                CategoryId = productViewModel.Product.CategoryId, 
+                ImageFile=productViewModel.Product.ImageFile,
+            };
+
+            var savedEntity= productRepository.AddProduct(dto);
+        
+            return RedirectToAction("GetAllProducts");
+        }
+        [HttpPost]
+        public IActionResult DeleteProduct(int id)
+        {
+             productRepository.DeleteProduct(id);
+            return RedirectToAction("GetAllProducts");
+        }
+
+    }
+}
