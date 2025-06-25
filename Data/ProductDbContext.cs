@@ -13,5 +13,11 @@ namespace MVCEcommerce.Data
         public DbSet<ProductCategory> productCategory { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<User> users { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ProductDetail>()
+                .Ignore(p => p.File); 
+        }
+
     }
 }

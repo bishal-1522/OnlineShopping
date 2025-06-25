@@ -49,12 +49,42 @@ namespace MVCEcommerce.Controllers
         
             return RedirectToAction("GetAllProducts");
         }
-        [HttpPost]
-        public IActionResult DeleteProduct(int id)
+        [HttpGet]
+        public IActionResult GetAllCategories()
         {
-             productRepository.DeleteProduct(id);
-            return RedirectToAction("GetAllProducts");
+             var categories=productRepository.GetAllCategories();
+            var viewModel = new ProductViewModel
+            {
+              Categories = categories.ToList()
+               
+            };
+            return View("GetAllCategories",viewModel);
+        }
+        [HttpGet]
+        public IActionResult GetCategoryByName(string categoryName)
+        {
+            var categories=productRepository.GetCategoryByName(categoryName);
+            var viewmodel = new ProductViewModel()
+            {
+                Categories = categories!= null ? new List<ProductCategory> { categories } : new List<ProductCategory>()
+            };
+            return View("GetAllCategories",viewmodel);
+        }
+        [HttpGet]
+        public IActionResult GetProductByName(string productName)
+        {
+            var product = productRepository.GetProductByName(productName); 
+
+
+            return View("GetAllProducts", product);
         }
 
+        [HttpGet]
+        public IActionResult GetProductByid(int categoryId) 
+        { 
+            var product=productRepository.GetProductById(categoryId);
+            return View("GetAllProducts",product);
+        
+        }
     }
 }

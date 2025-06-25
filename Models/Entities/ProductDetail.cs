@@ -14,8 +14,6 @@ namespace MVCEcommerce.Models.Entities
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
         public List<ProductCategory>? ProductCategory { get; set; }
-        
-
-
+        public IFormFile File { get; internal set; }
     }
 }

@@ -5,8 +5,22 @@
 
     </head>
     <body>
-        <td>
-            @Model.Categories
-        </td>
+    <form id="search-form" method="get" asp-action="GetCategoryByName" asp-controller="Products">
+        <input type="text" name="categoryName" placeholder="Search..." />
+        <button type="submit">Search categories</button>
+    </form>
+
+        <ul style="list-style:none">
+     
+            @foreach (var cat in Model.Categories)
+            {
+                <li id="@cat.CategoryId" style="font-size:30px;">
+                    <a asp-controller="Products" asp-action="GetProductByid" asp-route-categoryId="@cat.CategoryId">
+                    @cat.CategoryName
+                </a>
+                </li>
+            }
+        
+        </ul>
     </body>
 </html>

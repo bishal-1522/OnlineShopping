@@ -14,7 +14,8 @@ namespace MVCEcommerce.Repository
 
         //product detail
         public IEnumerable<ProductDetail> GetAllProducts();
-        public ProductDetail GetProductByName(string productName);
+        IEnumerable<ProductDetail> GetProductByName(string productName);
+        IEnumerable<ProductDetail> GetProductById(int id);
         public ProductDetail AddProduct(ProductDetailDto productDetaildto);
         public ProductDetail UpdateProduct(ProductDetailDto productDetaildto, int id);
         public ProductDetail DeleteProduct(int id);

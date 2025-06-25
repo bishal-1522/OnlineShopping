@@ -268,3 +268,4 @@ D:\VS_code\MVCEcommerce\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.Scripting.res
 D:\VS_code\MVCEcommerce\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Scripting.resources.dll
 D:\VS_code\MVCEcommerce\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Scripting.resources.dll
 D:\VS_code\MVCEcommerce\obj\Debug\net9.0\staticwebassets.build.json.cache
+D:\VS_code\MVCEcommerce\obj\Debug\net9.0\MVCEcommerce.sourcelink.json

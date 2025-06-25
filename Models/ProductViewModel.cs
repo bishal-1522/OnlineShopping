@@ -5,7 +5,9 @@ namespace MVCEcommerce.Models
 {
     public class ProductViewModel
     {
+        public ProductDetail ProductDetail { get; set; }
         public ProductDetailDto Product { get; set; }
         public List<ProductCategory> Categories { get; set; }
+        public ProductCategory Category { get; set; }
     }
 }

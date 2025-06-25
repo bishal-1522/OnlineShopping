@@ -57,7 +57,7 @@ namespace Ecommerce.Controllers
             return productRepository.GetAllProducts();
         }
         [HttpGet("productname{productName}")]
-        public ProductDetail GetProductByName(string productName)
+        public IEnumerable<ProductDetail> GetProductByName(string productName)
         {
             return productRepository.GetProductByName(productName);
         }
