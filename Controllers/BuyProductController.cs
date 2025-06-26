@@ -13,8 +13,14 @@ namespace MVCEcommerce.Controllers
         }
         public IActionResult Buy(ProductDetail productDetail, int requestedQty)
         {
-            buyProduct.PurchaseProduct(productDetail, requestedQty);
-            return View("GetAllProducts");
+            int orderId=buyProduct.PurchaseProduct(productDetail, requestedQty);
+             var bill=Bill(orderId);
+            return View("Bill",bill);
+        }
+        public Order Bill(int orderId)
+        {
+           var orderbill= buyProduct.GetBill(orderId);
+            return orderbill;
         }
     }
 }

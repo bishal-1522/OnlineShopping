@@ -4,6 +4,7 @@ namespace MVCEcommerce.Repository
 {
     public interface IBuyProduct
     {
-        void PurchaseProduct(ProductDetail productDetail, int requestedQty);
+        int PurchaseProduct(ProductDetail productDetail, int requestedQty);
+        Order GetBill(int id);
     }
 }

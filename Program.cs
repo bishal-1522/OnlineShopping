@@ -59,6 +59,7 @@ namespace Ecommerce
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddScoped<IBuyProduct, BuyProduct>();
+            builder.Services.AddScoped<IAddtoCart, AddtoCart>();
 
 
 

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using MVCEcommerce.Data;
 using MVCEcommerce.Models.Entities;
+using System.Data;
 
 namespace MVCEcommerce.Repository
 {
@@ -12,26 +13,40 @@ namespace MVCEcommerce.Repository
         {
             this.productDbContext = productDbContext;
         }
-        public void PurchaseProduct(ProductDetail productDetail,int requestedQty)
+        public int PurchaseProduct(ProductDetail productDetail,int requestedQty)
         {
+            int newOrderId = 0;
             if(productDetail.availableProduct>=0)
             {
+                if (requestedQty < 0)
+                {
+                    return 0;
+                }
                 var total = productDetail.PriceOfProduct * requestedQty;
-                var orderDate = DateTime.UtcNow;
-                string sql = "exec [dbo].[SpBuyProduct] @productId, @Quantity, @total, @orderDate";
+                var orderDate = DateTime.Now;
+                string sql = "exec [dbo].[SpBuyProduct] @productId, @Quantity, @total, @orderDate,@ProductName,@orderId OUT";
 
                 var parameters = new[]
                 {
                    new SqlParameter("@productId", productDetail.ProductId),
                    new SqlParameter("@Quantity", requestedQty),
                    new SqlParameter("@total", total),
-                   new SqlParameter("@orderDate", orderDate)
+                   new SqlParameter("@orderDate", orderDate),
+                   new SqlParameter("@ProductName", productDetail.ProductName),
+                    new SqlParameter("@orderId", SqlDbType.Int) { Direction = ParameterDirection.Output }
                 };
 
                 productDbContext.Database.ExecuteSqlRaw(sql, parameters);
+                newOrderId = (int)parameters.Last().Value;
+                
             }
-          
-
+            return newOrderId;
         }
+        public Order GetBill(int id)
+        {
+            var bill = productDbContext.Orders.FromSqlRaw($"EXEC SPGetBill @orderid={id}").AsEnumerable().FirstOrDefault();
+            return bill;
+        }
+       
     }
 }

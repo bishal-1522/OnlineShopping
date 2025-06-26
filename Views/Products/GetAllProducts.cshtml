@@ -54,7 +54,7 @@
                                 <a asp-controller="Products" asp-action="GetProductByProductId" asp-route-id="@product.ProductId">Buy </a>
                             </td>
                             <td style="border:1px solid;border-radius:5px;">
-                                 <a>Add To cart</a>
+                                <a asp-controller="AddtoCart" asp-action="Addcart" asp-route-id="@product.ProductId">Add to cart </a>
                             </td>
                         </tr>
                     </table>

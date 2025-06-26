@@ -13,10 +13,11 @@ namespace MVCEcommerce.Data
         public DbSet<ProductCategory> productCategory { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<User> users { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ProductDetail>()
-                .Ignore(p => p.File); 
+            modelBuilder.Entity<ProductDetail>().Ignore(p => p.File);
+            modelBuilder.Entity<CartItem>().HasKey(c => c.CartId);
         }
 
     }

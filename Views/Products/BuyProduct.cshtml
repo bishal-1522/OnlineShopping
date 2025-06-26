@@ -32,12 +32,14 @@
                @Html.HiddenFor(m => m.ProductId)
                @Html.HiddenFor(m=>m.availableProduct)
                @Html.HiddenFor(m=>m.PriceOfProduct)
+               @Html.HiddenFor(m=>m.ProductName)
               
                <div>
                     <label>Enter number of product:</label>
                      @Html.TextBox("requestedQty")
                </div>
                <button type="submit"asp-action="Buy" asp-controller="BuyProduct">Confirm purchase</button>
+
            </form>
        }
       else
