@@ -28,6 +28,12 @@ namespace MVCEcommerce.Controllers
             };
             return View("Productadditonform",viewmodel);
         }
+        [HttpGet]
+        public IActionResult GetProductByProductId(int id) 
+        {
+            var prod=productRepository.GetProductById(id);
+            return View("BuyProduct",prod);
+        }
         [HttpPost]
         public IActionResult AddProduct(ProductViewModel productViewModel)
         {

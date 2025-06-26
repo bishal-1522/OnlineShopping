@@ -1,1 +1,49 @@
-﻿
+﻿@model MVCEcommerce.Models.Entities.ProductDetail
+
+<!doctype html>
+<html>
+    <head>
+        <title>
+
+        </title>
+    </head>
+    <body>
+        
+      @if(Model!=null)
+      {
+          <table>
+              <tbody>
+                  <td>
+                        @if (Model.ImageData != null && Model.ImageData.Length > 0)
+                        {
+                            var base64 = Convert.ToBase64String(Model.ImageData);
+                            var imgSrc = $"data:image/jpeg;base64,{base64}";
+                            <img src="@imgSrc" alt="Product image" width="150" />
+                        }<br />
+                        <strong>@Model.ProductName</strong><br />
+                        Price:@Model.PriceOfProduct<br />
+                        Availbale Quantity:@Model.availableProduct<br />
+
+                  </td>
+              </tbody>
+          </table>
+          
+           <form asp-action="Buy" asp-controller="BuyProduct" >
+               @Html.HiddenFor(m => m.ProductId)
+               @Html.HiddenFor(m=>m.availableProduct)
+               @Html.HiddenFor(m=>m.PriceOfProduct)
+              
+               <div>
+                    <label>Enter number of product:</label>
+                     @Html.TextBox("requestedQty")
+               </div>
+               <button type="submit"asp-action="Buy" asp-controller="BuyProduct">Confirm purchase</button>
+           </form>
+       }
+      else
+      {
+        <p>Something went wrong</p>
+      }
+
+</body>
+</html>

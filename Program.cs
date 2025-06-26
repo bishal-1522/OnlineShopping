@@ -58,10 +58,10 @@ namespace Ecommerce
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
+            builder.Services.AddScoped<IBuyProduct, BuyProduct>();
 
 
 
-            
             var app = builder.Build();
             app.UseRouting();
             //app.MapControllerRoute(name: "Default", pattern: "{ Contoller=Prod}/{Action=Index}/{id?}");

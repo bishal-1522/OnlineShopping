@@ -75,9 +75,9 @@ namespace MVCEcommerce.Repository
         {
             return productDbContext.productDetail.Where(name => name.ProductName.Equals(productName)).ToList();
         }
-        public IEnumerable<ProductDetail> GetProductById(int id)
+        public ProductDetail GetProductById(int id)
         {
-            return productDbContext.productDetail.Where(name => name.CategoryId==id).ToList();
+            return productDbContext.productDetail.FirstOrDefault(p => p.ProductId == id);
         }
         public ProductDetail AddProduct(ProductDetailDto productDetailDto)
         {

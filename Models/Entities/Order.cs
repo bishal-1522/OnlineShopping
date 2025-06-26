@@ -10,8 +10,8 @@ namespace MVCEcommerce.Models.Entities
             [Key]
             public int OrderId { get; set; }
 
-            public string ProductName { get; set; }
-            public int Quantity { get; set; }
+            public string ProductId { get; set; }
+            public int requesstedQty { get; set; }
             public float TotalPrice { get; set; }
 
             public PaymentMethod paymentMethod { get; set; }
