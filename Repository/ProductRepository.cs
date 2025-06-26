@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using MVCEcommerce.Data;
 using MVCEcommerce.Models.DTO;
 using MVCEcommerce.Models.Entities;
+using System;
 
 namespace MVCEcommerce.Repository
 {
@@ -121,6 +123,16 @@ namespace MVCEcommerce.Repository
             existingProduct.PriceOfProduct = productDetaildto.PriceOfProduct;
             productDbContext.SaveChanges();
             return existingProduct;
+        }
+        public IEnumerable<ProductDetail> SortListing( string name)
+        {
+            
+
+            var products = productDbContext.productDetail
+                .FromSqlRaw($"EXEC SortingMatchingByNames @search={name}")
+                .ToList();
+
+            return products;
         }
         public ProductDetail DeleteProduct(int id)
         {

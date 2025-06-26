@@ -78,6 +78,14 @@ namespace MVCEcommerce.Controllers
 
             return View("GetAllProducts", product);
         }
+        [HttpGet]
+        public IActionResult GetProductSorting(string productName)
+        {
+            var product = productRepository.SortListing(productName); 
+
+
+            return View("GetAllProducts", product);
+        }
 
         [HttpGet]
         public IActionResult GetProductByid(int categoryId) 
@@ -85,6 +93,11 @@ namespace MVCEcommerce.Controllers
             var product=productRepository.GetProductById(categoryId);
             return View("GetAllProducts",product);
         
+        }
+        public IActionResult DeleteProduct(int id)
+        {
+            productRepository.DeleteProduct(id);
+            return RedirectToAction("GetAllProducts");
         }
     }
 }

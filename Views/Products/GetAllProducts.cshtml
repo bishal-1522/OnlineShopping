@@ -5,7 +5,7 @@
     <title>Product List</title>
 </head>
 <body>
-    <form id="search-form" method="get" asp-action="GetProductByName" asp-controller="Products">
+    <form id="search-form" method="get" asp-action="GetProductSorting" asp-controller="Products">
         <input type="text" name="productName" placeholder="Search..." />
         <button type="submit">Search products</button>
     </form>
@@ -18,7 +18,7 @@
     </thead>
     <tbody>
         @{
-            int count = 0; // Initialize counter
+            int count = 0; 
         }
 
         @foreach (var product in Model)
