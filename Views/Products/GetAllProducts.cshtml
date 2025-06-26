@@ -47,7 +47,18 @@
                 <div>
                     <strong>@product.ProductName</strong><br />
                     Price: Rs.@product.PriceOfProduct<br />
-                    Available: @product.availableProduct
+                    Available: @product.availableProduct<br />
+                    <table>
+                        <tr >
+                            <td style="border:1px solid;border-radius:5px;padding:7px;">
+                                <a asp-controller="BuyProduct" asp-action="" asp-route-productId="@product.ProductId">Buy </a>
+                            </td>
+                            <td style="border:1px solid;border-radius:5px;">
+                                 <a>Add To cart</a>
+                            </td>
+                        </tr>
+                    </table>
+                
                 </div>
             </td>
 

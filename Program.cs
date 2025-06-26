@@ -56,7 +56,6 @@ namespace Ecommerce
             // Database and custom services
             builder.Services.AddDbContext<ProductDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-            builder.Services.AddScoped<IBuyProductRepo, BuyProductRepository>();
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
 

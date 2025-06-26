@@ -32,22 +32,6 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "MVCEcommerce.Controllers.BuyController",
-    "Method": "MakePurchase",
-    "RelativePath": "api/Buy/purchase",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "availabilityDto",
-        "Type": "MVCEcommerce.Models.DTO.AvailabilityDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "Ecommerce.Controllers.ProductController",
     "Method": "GetAllCategories",
     "RelativePath": "api/Product/category",
