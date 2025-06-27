@@ -34,6 +34,17 @@ namespace MVCEcommerce.Controllers
             var prod=productRepository.GetProductById(id);
             return View("BuyProduct",prod);
         }
+        [HttpGet]
+        public IActionResult AddtoCartyByProductId(int id) 
+        {
+            var prod=productRepository.GetProductById(id);
+            var viewModel = new ProductViewModel()
+            {
+                ProductDetail = prod,
+                CartItem = new CartItem()
+            };
+            return View("~/Views/AddtoCart/AddtoCart.cshtml", viewModel);
+        }
         [HttpPost]
         public IActionResult AddProduct(ProductViewModel productViewModel)
         {

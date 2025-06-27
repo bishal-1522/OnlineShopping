@@ -1,24 +1,57 @@
-﻿<!doctype html>
-
+﻿@model MVCEcommerce.Models.ProductViewModel
+<!doctype html>
 <html>
-    <head>
+<head>
+    <title>Add to Cart</title>
+</head>
+<body>
+    <form asp-action="Addcart" asp-controller="AddtoCart" method="post">
+        @Html.Hidden("productId", Model.ProductDetail.ProductId)
 
-    </head>
-    <body>
-        <table>
+        <div>
+            <label>Enter number of product:</label>
+            <input type="number" name="requestedQty" min="1" required />
+        </div>
+
+        <button type="submit">Add</button>
+    </form>
+
+
+    @if (Model?.CartItem != null && Model.ProductDetail != null)
+    {
+        <table style="border:1px solid">
             <thead>
-                <th>Name</th>
-                <th>Price each</th>
-                <th>Quantity</th>
-                <th>Total item</th>
-                <th>Remove item</th>
-
+                <tr>
+                    <th style="border:2px solid">Name</th>
+                    <th style="border:2px solid">Price each</th>
+                    <th style ="border:2px solid">Quantity</th>
+                    <th style="border:2px solid">Total Price</th>
+                    <th style="border:2px solid">Remove item</th>
+                </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td></td>
+                    <td style="border:1px solid">@Model.ProductDetail.ProductName</td>
+                    <td style="border:1px solid">@Model.ProductDetail.PriceOfProduct</td>
+                    <td style="border:1px solid">@Model.CartItem.Quantity</td>
+                    <td style="border:1px solid">@(Model.CartItem.Quantity* Model.ProductDetail.PriceOfProduct)</td>
+                    <td style="border:1px solid">
+                        <form asp-action="RemoveItem" asp-controller="AddtoCart" method="post">
+                            <input type="hidden" name="productId" value="@Model.ProductDetail.ProductId" />
+                            <button type="submit"asp-action="Delete"asp-controller="AddtoCart" asp-route-cartId="@Model.CartItem.CartId">Remove</button>
+                        </form>
+                    </td>
                 </tr>
             </tbody>
         </table>
-    </body>
+        <br />
+        <br />
+        <table>
+            <td style="border:2px solid">
+                <a asp-action="GetAllProducts" asp-controller="Products"><strong>Add more items</strong></a>
+
+            </td>
+        </table>
+    }
+</body>
 </html>

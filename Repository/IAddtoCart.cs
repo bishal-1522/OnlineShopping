@@ -1,9 +1,11 @@
-﻿using MVCEcommerce.Models.Entities;
+﻿using MVCEcommerce.Models;
+using MVCEcommerce.Models.Entities;
 
 namespace MVCEcommerce.Repository
 {
     public interface IAddtoCart
     {
-        CartItem AddProductsToCart(ProductDetail productDetail, int requestedQty);
+        ProductViewModel AddProductsToCart(ProductDetail productDetail, int requestedQty);
+        void Delete(int id);
     }
 }
